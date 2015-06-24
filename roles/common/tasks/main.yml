@@ -16,11 +16,11 @@
       - build-essential
 
   - name: Configure NTP
-    template: src=etc_ntp.conf.j2 dest=/etc/ntp.conf backup=yes
+    file: src=etc_ntp.conf.j2 dest=/etc/ntp.conf backup=yes
     notify:
       - restart ntp
 
   - name: Configure SSHD
-    file: src=etc_ssh_sshd_conf dest=/etc/ssh/sshd_config
+    file: src=etc_ssh_sshd_config dest=/etc/ssh/sshd_config force=yes
     notify:
       - restart ssh
