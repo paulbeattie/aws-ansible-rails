@@ -1,0 +1,11 @@
+---
+
+- hosts: web
+  sudo: yes
+  gather_facts: yes
+  vars_file:
+    - group_vars/web.yml
+
+  roles:
+    - common
+    - web
