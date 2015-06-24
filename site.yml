@@ -3,9 +3,10 @@
 - hosts: web
   sudo: yes
   gather_facts: yes
-  vars_file:
+  remote_user: ubuntu
+  vars_files:
     - group_vars/web.yml
 
   roles:
     - common
-    - web
+    # - web
