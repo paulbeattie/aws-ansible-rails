@@ -17,11 +17,11 @@
       - language-pack-en
 
   - name: Configure NTP
-    file: src=etc_ntp.conf dest=/etc/ntp.conf backup=yes
+    copy: src=etc_ntp.conf dest=/etc/ntp.conf backup=yes
     notify:
       - restart ntp
 
-  - name: Configure SSHD
-    file: src=etc_ssh_sshd_config dest=/etc/ssh/sshd_config backup=yes
+  - name: Configure sshd
+    copy: src=etc_ssh_sshd_config dest=/etc/ssh/sshd_config backup=yes
     notify:
       - restart ssh
