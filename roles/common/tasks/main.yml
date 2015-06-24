@@ -1,0 +1,21 @@
+---
+  - name: Update apt cache
+    apt: update_cache=yes
+
+  - name: Upgrade all packages safely
+    apt: upgrade=safe
+
+  - name: Install helpful packages and pre reqs
+    apt: pkg={{ item }} state=present
+    with_items:
+      - sudo
+      - vim
+      - mtr-tiny
+      - git
+      - ntp
+      - build-essential
+
+  - name: Configure NTP
+    template: src=etc_ntp.conf.j2 dest=/etc/ntp.conf backup=yes
+    notify:
+      - restart ntp
