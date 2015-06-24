@@ -3,5 +3,11 @@
 - name: restart ntp
   service: name=ntp state=restarted
 
+# - name: restart ssh
+#   service: name=ssh state=restarted
+
+# The following is unnecessary, this is due to an Ansible bug which is due to fix in 2.0
+# the commands above are the correct and should work after this time.
+
 - name: restart ssh
-  service: name=ssh state=restarted
+  command: service ssh restart
