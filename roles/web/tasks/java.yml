@@ -1,11 +1,22 @@
-- name: Add webupd8team repo for Java
-  apt_repository: repo='ppa:nginx/stable'
+- name: Install add-apt-repostory
+  apt: name=software-properties-common state=latest
+
+- name: Add Oracle Java Repository
+  apt_repository: repo='ppa:webupd8team/java'
+  register: javaaptrepostatus
 
 - name: Upgrade apt cache for new repo
   action: apt update_cache=yes
+  when: javaaptrepostatus|changed
 
-- name: Automatically select the Oracle License
-  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+- name: Accept Java 8 Licence
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections
+  args:
+    creates: /etc/oracle-java-8-licence-acceptance
 
-- name: Install Java 8
-  apt: pkg=oracle-java8-installer state=present
+- name: Install Oracle Java 8
+  apt: name={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
