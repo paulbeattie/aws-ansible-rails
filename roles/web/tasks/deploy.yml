@@ -14,3 +14,6 @@
     - apps
     - assets
     - ssl
+
+- name: Allow deploy user to sudo nginx
+  copy: src=etc_sudoers.d_1_deploy dest=/etc/sudoers.d/1_deploy mode=0440
