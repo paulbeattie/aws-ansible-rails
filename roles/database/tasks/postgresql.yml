@@ -1,0 +1,32 @@
+- name: Install PostgreSQL dependencies
+  action: apt pkg={{item}} state=latest
+  with_items:
+    - python-pycurl
+    - python-psycopg2
+
+- name: Add PostgreSQL repo key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+
+- name: Add PostgreSQL repo
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main'
+
+- name: Install PostgreSQL
+  apt: pkg=postgresql-9.4 state=latest update_cache=true
+
+- name: Copy valid pg_hba.conf
+  copy: src=pg_hba.conf dest=/etc/postgresql/9.4/main/pg_hba.conf
+  notify:
+    - restart postgresql
+
+- name: Restart PostgreSQL
+  command: service postgresql restart
+
+- name: create the postgresql user for application
+  postgresql_user: name=deploy
+  sudo: yes
+  sudo_user: postgres
+
+- name: create the postgresql database for application
+  postgresql_db: name=app_{{app_name}} owner=deploy state=present
+  sudo: yes
+  sudo_user: postgres
