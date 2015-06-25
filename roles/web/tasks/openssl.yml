@@ -1,0 +1,13 @@
+- name: Install OpenSSL
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - libssl-dev
+    - libssl-doc
+    - libssl1.0.0
+    - openssl
+
+- name: Create Nginx SSL directory
+  file: state=directory path=/etc/nginx/ssl
+
+- name: Generate Diffie-Hellman parameter for DHE ciphersuites
+  command: openssl dhparam 2048 -out /etc/nginx/ssl/dhparam.pem creates=/etc/nginx/ssl/dhparam.pem
