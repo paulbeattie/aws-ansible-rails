@@ -6,7 +6,9 @@
   remote_user: ubuntu
   vars_files:
     - group_vars/web.yml
+    - group_vars/database.yml
 
   roles:
     - common
     - web
+    - database
