@@ -1,7 +1,4 @@
 ---
-# Ruby from source playbook (https://github.com/jgrowl/ansible-playbook-ruby-from-src)
-- name: upgrade apt cache
-  action: apt update_cache=yes cache_valid_time=1800
 
 - name: install ruby dependencies
   action: apt pkg={{item}} state=installed
@@ -23,35 +20,11 @@
     - libsqlite3-dev
     - libxml2-dev
     - libxslt1-dev
-
-- name: Install app dependencies
-  action: apt pkg={{item}} state=installed
-  with_items:
     - libpq-dev
     - nodejs
-    - imagemagick
-  tags: package
 
-# Install correct version of ruby from source
-- name: ruby-from-src | ensure directory temporary ruby download directory is present
-  file: state=directory path={{rubyTmpDir}}
+- name: Add deploy user to RVM group
+  user: name=deploy groups=rvm append=yes
 
-- name: ruby-from-src | Download ruby source
-  get_url: url={{rubyUrl}} dest={{rubyTmpDir}}
-
-- name: ruby-from-src | ensure ruby is extracted
-  command: tar -xf {{rubyCompressedFile}} chdir={{rubyTmpDir}} creates={{tmpRubyPath}}
-
-- name: ruby-from-src | ensure ruby is configured
-  command: ./configure chdir={{tmpRubyPath}} creates={{tmpRubyPath}}/Makefile
-
-- name: ruby-from-src | ensure ruby is compiled
-  command: make chdir={{tmpRubyPath}} creates={{tmpRubyPath}}/ruby
-  register: rubycompilestatus
-
-- name: ruby-from-src | ensure ruby is installed
-  command: make install chdir={{tmpRubyPath}} creates=/usr/local/bin/ruby
-
-- name: Install Bundler
-  command: gem install bundler
-  when: rubycompilestatus|changed
+- name: Add ubuntu user to RVM group
+  user: name=ubuntu groups=rvm append=yes
