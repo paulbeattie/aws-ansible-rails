@@ -1,7 +1,7 @@
 ---
 # Ruby from source playbook (https://github.com/jgrowl/ansible-playbook-ruby-from-src)
-- name: upgrade
-  action: apt update_cache=yes upgrade=yes
+- name: upgrade apt cache
+  action: apt update_cache=yes cache_valid_time=1800
 
 - name: install ruby dependencies
   action: apt pkg={{item}} state=installed
