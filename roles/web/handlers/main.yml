@@ -1,0 +1,7 @@
+---
+
+  - name: restart nginx
+    service: name=nginx state=restarted
+
+  - name: enable and start Elasticsearch
+    service: name:elasticsearch enabled=yes state=started
