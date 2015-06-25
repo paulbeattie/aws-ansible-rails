@@ -47,9 +47,11 @@
 
 - name: ruby-from-src | ensure ruby is compiled
   command: make chdir={{tmpRubyPath}} creates={{tmpRubyPath}}/ruby
+  register: rubycompilestatus
 
 - name: ruby-from-src | ensure ruby is installed
   command: make install chdir={{tmpRubyPath}} creates=/usr/local/bin/ruby
 
 - name: Install Bundler
   command: gem install bundler
+  when: rubycompilestatus|changed
