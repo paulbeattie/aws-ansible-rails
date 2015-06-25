@@ -21,6 +21,5 @@
   notify:
     - restart nginx
 
-
 - name: Remove the default app
   command: rm -rf /etc/nginx/sites-enabled/default
