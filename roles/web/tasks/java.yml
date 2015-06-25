@@ -1,0 +1,11 @@
+- name: Add webupd8team repo for Java
+  apt_repository: repo='ppa:nginx/stable'
+
+- name: Upgrade apt cache for new repo
+  action: apt update_cache=yes
+
+- name: Automatically select the Oracle License
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+
+- name: Install Java 8
+  apt: pkg=oracle-java8-installer state=present
