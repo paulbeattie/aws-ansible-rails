@@ -9,6 +9,7 @@
     - group_vars/database.yml
 
   roles:
+    - { role: rvm_io.rvm1-ruby, sudo: True }
     - common
     - web
     - database
