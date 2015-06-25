@@ -3,3 +3,5 @@
 - include: deploy.yml
 - include: java.yml
 - include: elasticsearch.yml
+- include: production_requirements.yml
+- include: openssl.yml
