@@ -7,4 +7,4 @@ deploy_directory: /var/www
 elasticsearch_version: 1.6
 rvm1_rubies:
   - 'ruby-2.1.6'
-  - 'ruby-2.2.2'
+  # - 'ruby-2.2.2'
