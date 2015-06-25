@@ -4,3 +4,4 @@ rubyCompressedFile: ruby-2.2.2.tar.gz
 rubyName: ruby-2.2.2
 tmpRubyPath: "{{rubyTmpDir}}/{{rubyName}}"
 deploy_directory: /var/www
+elasticsearch_version: 1.6
