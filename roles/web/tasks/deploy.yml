@@ -1,0 +1,15 @@
+- name: Create deployment user
+  user: name=deploy comment="Application deployment user"
+
+- authorized_key: user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Create deployment directory
+  file: path={{deploy_directory}} owner=deploy group=deploy state=directory
+
+- name: Make shared directories
+  file: path={{deploy_directory}}/{{item}} group=deploy owner=deploy state=directory
+  with_items:
+    - conf
+    - vendor
+    - apps
+    - assets
