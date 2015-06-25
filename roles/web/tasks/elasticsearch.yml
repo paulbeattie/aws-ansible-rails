@@ -3,12 +3,13 @@
 
 - name: Add Elasticsearch apt repo
   apt_repository: repo='deb http://packages.elastic.co/elasticsearch/{{ elasticsearch_version }}/debian stable main' state=present
+  register: elasticsearchaptrepostatus
 
 - name: Upgrade apt cache for new repo
   action: apt update_cache=yes
+  when: elasticsearchaptrepostatus|changed
 
 - name: Install Elasticsearch
   apt: pkg=elasticsearch state=present
-
-- name: Start Elasticsearch
-  service: name:elasticsearch enabled=yes state=started
+  notify:
+    - enable and start Elasticsearch
