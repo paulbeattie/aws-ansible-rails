@@ -15,6 +15,7 @@
       - ntp
       - build-essential
       - language-pack-en
+      - htop
 
   - name: Configure NTP
     copy: src=etc_ntp.conf dest=/etc/ntp.conf backup=yes
