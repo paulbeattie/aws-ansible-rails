@@ -15,5 +15,5 @@
     - assets
     - ssl
 
-- name: Allow deploy user to sudo nginx
+- name: Allow deploy user to sudo nginx without password
   copy: src=etc_sudoers.d_1_deploy dest=/etc/sudoers.d/1_deploy mode=0440
