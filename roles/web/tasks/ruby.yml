@@ -23,8 +23,8 @@
     - libpq-dev
     - nodejs
 
-- name: Add deploy user to RVM group
-  user: name=deploy groups=rvm append=yes
-
-- name: Add ubuntu user to RVM group
-  user: name=ubuntu groups=rvm append=yes
+- name: Add users to RVM group
+  user: name={{item}} groups=rvm append=yes
+  with_items:
+    - ubuntu
+    - deploy
