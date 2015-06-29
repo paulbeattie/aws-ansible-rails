@@ -7,5 +7,4 @@
     - imagemagick
     - git-core
 
-
 - include: wkhtmltopdf.yml tags: wkhtmltopdf
