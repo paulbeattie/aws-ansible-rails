@@ -3,5 +3,6 @@
 - include: deploy.yml
 - include: java.yml
 - include: elasticsearch.yml
+- include: nodejs.yml tags: nodejs
 - include: production_requirements.yml
 - include: openssl.yml
