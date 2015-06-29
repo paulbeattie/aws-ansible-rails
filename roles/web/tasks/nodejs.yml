@@ -1,0 +1,8 @@
+- name: Import the NodeSource GPG key into apt
+  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+
+- name: 'Add Nodesource repo'
+  apt_respository: repo='deb https://deb.nodesource.com/node_0.12 trusty main'
+
+- name: 'Install NodeJS'
+  apt: pkg=nodejs state=installed update_cache=yes
