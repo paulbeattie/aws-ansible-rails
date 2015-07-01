@@ -8,3 +8,4 @@ elasticsearch_version: 1.6
 rvm1_rubies:
   - 'ruby-2.1.6'
   # - 'ruby-2.2.2'
+redis_version: 3.0.2
