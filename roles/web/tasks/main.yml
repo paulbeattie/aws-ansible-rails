@@ -1,8 +1,8 @@
-- include: ruby.yml tags: ruby
-- include: nginx.yml tags: nginx
-- include: deploy.yml tags: deploy_setup
-- include: java.yml tags: elasticsearch
-- include: elasticsearch.yml tags: elasticsearch
-- include: nodejs.yml tags: nodejs
-- include: production_requirements.yml tags: production_requirements
-- include: openssl.yml tags: openssl
+- include: ruby.yml tags=ruby
+- include: nginx.yml tags=nginx
+- include: deploy.yml tags=deploy_setup
+- include: java.yml tags=elasticsearch
+- include: elasticsearch.yml tags=elasticsearch
+- include: nodejs.yml tags=nodejs
+- include: production_requirements.yml tags=production_requirements
+- include: openssl.yml tags=openssl
