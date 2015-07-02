@@ -3,8 +3,7 @@
   with_items:
     - libpq-dev
     - postgresql-client
-    - redis-server
     - imagemagick
     - git-core
 
-- include: wkhtmltopdf.yml tags: wkhtmltopdf
+- include: wkhtmltopdf.yml tags=wkhtmltopdf
