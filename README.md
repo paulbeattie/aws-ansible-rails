@@ -21,6 +21,14 @@ This playbook uses the rvm1-ruby role, you will need to install this using Ansib
 ansible-galaxy install rvm_io.rvm1-ruby
 ```
 
+## Redis
+This playbook currently uses David Wittman's Ansible playbook for Redis.
+This gives a much more modern version of Redis than the OS package manager.
+You will need to install this using ansible-galaxy to use it.
+```
+ansible-galaxy install DavidWittman.redis
+```
+
 ##
 You need to create a new hosts file, this follows the following format:
 ```

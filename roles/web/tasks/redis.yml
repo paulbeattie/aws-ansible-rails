@@ -1,0 +1,32 @@
+- name: enable overcommit in sysctl
+  sysctl: name=vm.overcommit_memory value=1 state=present reload=yes
+
+- name: create redis user
+  user: name=redis comment="Redis" home=/opt/redis shell=/bin/false system=yes
+
+- name: download redis
+  get_url: url=http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
+           dest=/usr/local/src/redis-{{ redis_version }}.tar.gz
+
+- name: extract redis tarball
+  shell: tar xf /usr/local/src/redis-{{ redis_version }}.tar.gz -C /usr/local/src
+         creates=/usr/local/src/redis-{{ redis_version }}
+
+- name: compile redis
+  command: make -j5
+           chdir=/usr/local/src/redis-{{ redis_version }}
+           creates=/usr/local/src/redis-{{ redis_version }}/src/redis-server
+
+- name: create redis install directory
+  file: path=/opt/redis state=directory
+
+- name: create /etc/redis
+  file: path=/etc/redis state=directory
+
+- name: create /var/run/redis
+  file: path=/var/run/redis state=directory owner=redis
+
+- name: install redis
+  command: make PREFIX=/opt/redis install
+           chdir=/usr/local/src/redis-{{ redis_version }}
+           creates=/opt/redis/bin/redis-server
