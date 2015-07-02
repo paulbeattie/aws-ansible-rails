@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+  remote_user: vagrant
+  vars_files:
+    - group_vars/web.yml
+    - group_vars/database.yml
+  vars:
+    - redis_bind: 127.0.0.1
+    - redis_version: 3.0.2
+
+  roles:
+    - { role: rvm_io.rvm1-ruby, sudo: True }
+    - common
+    - web
+    - database
+    - DavidWittman.redis
