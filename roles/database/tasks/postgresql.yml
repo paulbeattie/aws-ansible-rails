@@ -27,6 +27,6 @@
   sudo_user: postgres
 
 - name: create the postgresql database for application
-  postgresql_db: name={{ app_name }}_live owner={{ app_name }} state=present
+  postgresql_db: name={{ database_name }}_live owner={{ app_name }} state=present
   sudo: yes
   sudo_user: postgres
