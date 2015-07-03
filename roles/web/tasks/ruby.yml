@@ -19,7 +19,6 @@
     - libxml2-dev
     - libxslt1-dev
     - libpq-dev
-    - nodejs
 
 - name: Add users to RVM group
   user: name={{item}} groups=rvm append=yes
