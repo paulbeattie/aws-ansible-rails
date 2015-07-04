@@ -20,3 +20,8 @@
 
 - name: Remove the default app
   command: rm -rf /etc/nginx/sites-enabled/default
+
+- name: Copy nginx.conf
+  copy: src=nginx.conf dest=/etc/nginx
+  notify:
+    - restart nginx
