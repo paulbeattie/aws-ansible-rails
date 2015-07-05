@@ -22,6 +22,6 @@
   command: rm -rf /etc/nginx/sites-enabled/default
 
 - name: Copy nginx.conf
-  copy: src=nginx.conf dest=/etc/nginx
+  copy: src=etc_nginx_nginx.conf dest=/etc/nginx
   notify:
     - restart nginx
