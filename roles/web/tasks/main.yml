@@ -1,6 +1,6 @@
+- include: deploy.yml tags=deploy_setup
 - include: ruby.yml tags=ruby
 - include: nginx.yml tags=nginx
-- include: deploy.yml tags=deploy_setup
 - include: java.yml tags=elasticsearch
 - include: elasticsearch.yml tags=elasticsearch
 - include: nodejs.yml tags=nodejs
