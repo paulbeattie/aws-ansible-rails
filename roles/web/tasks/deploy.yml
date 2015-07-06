@@ -3,6 +3,11 @@
 
 - authorized_key: user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
+- name: Add users to Deploy group
+  user: name={{item}} groups=deploy append=yes
+  with_items:
+    - ubuntu
+
 - name: Create deployment directory
   file: path={{deploy_directory}} owner=deploy group=deploy state=directory
 
