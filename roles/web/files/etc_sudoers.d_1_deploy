@@ -1,1 +1,1 @@
-deploy ALL = (root) NOPASSWD: /etc/init.d/nginx
+deploy ALL = (root) NOPASSWD: /usr/bin/service nginx *
