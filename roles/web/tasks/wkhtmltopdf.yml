@@ -2,7 +2,7 @@
   file: state=directory path=/opt/wkhtmltopdf
 
 - name: Fetching wkhtmltopdf archive
-  get_url: url=http://downloads.sourceforge.net/wkhtmltopdf/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb dest=/opt/wkhtmltopdf/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb validate_certs=no
+  get_url: url=http://download.gna.org/wkhtmltopdf/0.12/0.12.2/wkhtmltox-0.12.2_linux-trusty-amd64.deb dest=/opt/wkhtmltopdf/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb validate_certs=no
 
 - name: Install wkthtmltopdf package
   apt: deb=/opt/wkhtmltopdf/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb state=installed
