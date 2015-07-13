@@ -3,6 +3,9 @@
 
 - authorized_key: user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
+- name: Setup SSH config for deploy user
+  copy: src=home_deploy_ssh_config dest=/home/deploy/.ssh/config owner=deploy group=deploy mode=0644
+
 - name: Add users to Deploy group
   user: name={{item}} groups=deploy append=yes
   with_items:
