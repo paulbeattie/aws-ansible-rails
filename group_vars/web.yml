@@ -9,3 +9,35 @@ rvm1_rubies:
   - 'ruby-2.1.6'
   # - 'ruby-2.2.2'
 redis_version: 3.0.2
+
+logrotate_scripts:
+  - name: rails
+    path: /var/www/apps/*/shared/log/*.log
+    options:
+      - daily
+      - missingok
+      - compress
+      - delaycompress
+      - copytruncate
+      - rotate 14
+      - su deploy deploy
+  - name: nginx
+    path: /var/log/nginx/*.log
+    options:
+      - weekly
+      - missingok
+      - compress
+      - delaycompress
+      - notifempty
+      - create 0640 www-date adm
+      - rotate 8
+    scripts:
+      prerotate: "if [ -d /etc/logrotate.d/httpd-prerotate ]; then  run-parts /etc/logrotate.d/httpd-prerotate;  fi "
+      postrotate: "invoke-rc.d nginx rotate >/dev/null 2>&1"
+  - name: clamav-logs
+    path: /var/log/clamav/*.gz
+    options:
+      - rotate 30
+      - missingok
+      - notifempty
+      - daily

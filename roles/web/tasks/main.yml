@@ -7,3 +7,4 @@
 - include: production_requirements.yml tags=production_requirements
 - include: openssl.yml tags=openssl
 - include: wkhtmltopdf.yml tags=wkhtmltopdf
+- include: logrotate.yml tags=logrotate
