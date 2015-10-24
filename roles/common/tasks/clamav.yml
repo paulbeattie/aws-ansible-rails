@@ -1,0 +1,12 @@
+- name: Install clamav
+  apt: pkg={{ item }} state=present
+  with_items:
+    - clamav
+  register: clamavinstallstatus
+
+- name: Update ClamAV Signatures
+  command: freshclam --quiet
+  when: clamavinstallstatus|changed
+
+- name: Copy daily virus check and update cron task
+  template: src=etc_cron.daily_clamscan.j2 dest="/etc/cron.daily/clamscan" mode=0755 owner=root group=root
