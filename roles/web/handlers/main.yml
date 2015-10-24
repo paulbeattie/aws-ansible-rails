@@ -5,3 +5,6 @@
 
   - name: enable and start Elasticsearch
     service: name=elasticsearch enabled=yes state=started
+
+  - name: restart fail2ban
+    service: name=fail2ban state=restarted
