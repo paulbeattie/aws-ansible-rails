@@ -15,6 +15,14 @@ You also have the ability to skip some parts of the Playbook from running
 ansible-playbook site.yml -i << your inventory file >> -l group --skip-tags "wkhtmltopdf"
 ```
 
+### Installing dependencies
+
+Instead of manually installing the above package you can install them all in one go by running the following command.
+```
+ansible-galaxy install -r requirements.yml
+```
+If you already have some install you may need to run this with the flag `--ignore-errors`
+
 ## RVM role
 This playbook uses the rvm1-ruby role, you will need to install this using Ansible Galaxy
 ```

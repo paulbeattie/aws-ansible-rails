@@ -1,0 +1,6 @@
+# This file gives us much better control over the location of playbooks
+# See http://docs.ansible.com/ansible/galaxy.html#advanced-control-over-role-requirements-files
+
+- src: DavidWittman.redis
+- src: rvm_io.rvm1-ruby
+- src: ANXS.hostname
