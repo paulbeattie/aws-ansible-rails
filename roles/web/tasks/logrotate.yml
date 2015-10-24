@@ -1,0 +1,11 @@
+- name: Install logrotate
+  apt: pkg={{ item }} state=present
+  with_items:
+    - logrotate
+
+- name: Setup logrotate.d scripts
+  template:
+    src: logrotate.d.j2
+    dest: /etc/logrotate.d/{{ item.name }}
+  with_items: logrotate_scripts
+  when: logrotate_scripts is defined
