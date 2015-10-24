@@ -26,3 +26,5 @@
     copy: src=etc_ssh_sshd_config dest=/etc/ssh/sshd_config backup=yes
     notify:
       - restart ssh
+
+  - include: clamav.yml tags=clamav

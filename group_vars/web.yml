@@ -9,6 +9,7 @@ rvm1_rubies:
   - 'ruby-2.1.6'
   # - 'ruby-2.2.2'
 redis_version: 3.0.2
+admin_email: developer@example.com
 
 logrotate_scripts:
   - name: rails
