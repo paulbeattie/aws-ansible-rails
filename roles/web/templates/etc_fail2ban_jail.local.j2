@@ -1,0 +1,10 @@
+[DEFAULT]
+ignoreip  = 127.0.0.1
+bantime   = 86400
+banaction = iptables-multiport
+action    = %(action_mwl)s
+
+# JAILS
+[ssh]
+enabled   = true
+maxretry  = 3
