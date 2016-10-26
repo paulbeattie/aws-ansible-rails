@@ -39,3 +39,4 @@
       - restart ssh
 
   - include: clamav.yml tags=clamav
+  - include: firewall.yml tags=firewall

@@ -1,0 +1,14 @@
+- name: Install UFW
+  apt: pkg={{ item }} state=present
+  with_items:
+    - iptables
+    - ufw
+
+- name: Allow SSH
+  ufw: rule=allow port=ssh proto=tcp
+
+- name: Reject all other traffic
+  ufw: state=enabled policy=reject
+
+- name: Enable UFW
+  ufw: state=enabled
