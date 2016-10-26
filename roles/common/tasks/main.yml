@@ -17,6 +17,17 @@
       - language-pack-en
       - htop
 
+  - name: Set timezone
+    copy:
+      content: 'Europe/London'
+      dest: /etc/timezone
+      owner: root
+      group: root
+      mode: 0644
+      backup: yes
+    notify:
+      - update timezone
+
   - name: Configure NTP
     copy: src=etc_ntp.conf dest=/etc/ntp.conf backup=yes
     notify:
